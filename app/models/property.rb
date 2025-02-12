@@ -8,11 +8,12 @@ class Property < ApplicationRecord
 
   scope :similar_in_radius, ->(property, radius) {
     where(property_type: property.property_type, marketing_type: property.marketing_type)
-      .where("earth_distance(ll_to_earth(?, ?), ll_to_earth(latitude, longitude)) <= ?", property.latitude, property.longitude, radius)
+      .where("earth_location && earth_box(ll_to_earth(?, ?), ?)", property.latitude, property.longitude, radius)
+      .where("earth_distance(ll_to_earth(?, ?), earth_location) <= ?", property.latitude, property.longitude, radius)
   }
 
-
   private
+
   # Method to set the earth_location based on latitude and longitude
   def set_earth_location
     result = ActiveRecord::Base.connection.execute("SELECT ll_to_earth(#{latitude}, #{longitude})")
