@@ -4,7 +4,8 @@ class PropertiesController < ApplicationController
       lat: properties_params[:lat],
       lng: properties_params[:lng],
       property_type: properties_params[:property_type],
-      marketing_type: properties_params[:marketing_type]
+      marketing_type: properties_params[:marketing_type],
+      radius: properties_params[:radius]
     )
 
     similar_properties = property_service.similar_properties
@@ -26,6 +27,6 @@ class PropertiesController < ApplicationController
   private
 
   def properties_params
-    params.permit(:lat, :lng, :property_type, :marketing_type)
+    params.permit(:lat, :lng, :property_type, :marketing_type, :radius)
   end
 end

@@ -8,7 +8,8 @@ class PropertyService
       property_type: property_type,
       marketing_type: marketing_type,
       )
-    @radius = radius
+
+    @radius = radius.present? ? radius.to_i : DEFAULT_RADIUS
   end
 
   def similar_properties

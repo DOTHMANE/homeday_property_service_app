@@ -50,6 +50,7 @@ This is a Ruby on Rails API-based property service that provides functionality t
    longitude (required): Longitude of the location.
    property_type (required): Type of property (e.g., apartment, house).
    marketing_type (required): Marketing type (e.g., sell, rent). 
+   radius (optional): to change the radius
    page: to navigate through th pages
    
 6. Running Tests:
