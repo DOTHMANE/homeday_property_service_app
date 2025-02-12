@@ -9,6 +9,9 @@
 #   end
 json_file = Rails.root.join('data', 'properties.json')
 
+def calculate_earth_location(lat, lng)
+  Arel.sql("ll_to_earth(#{lat}, #{lng})") if lat.present? && lng.present?
+end
 def import_json_file(file)
   properties = JSON.parse(File.read(file))
 
@@ -23,6 +26,7 @@ def import_json_file(file)
           state: row["state"],
           latitude: row["lat"],
           longitude: row["lng"],
+          earth_location: calculate_earth_location(row["lat"], row["lng"]),
           property_type: row["property_type"],
           marketing_type: row["marketing_type"],
           price: row["price"]
@@ -41,3 +45,4 @@ if File.exist?(json_file)
 else
   puts "JSON file not found. Skipping seed import."
 end
+
