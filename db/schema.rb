@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2025_02_12_153950) do
+ActiveRecord::Schema[7.2].define(version: 2025_02_12_181846) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "cube"
   enable_extension "earthdistance"
@@ -29,6 +29,7 @@ ActiveRecord::Schema[7.2].define(version: 2025_02_12_153950) do
     t.integer "price"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.column "earth_location", "earth", null: true
     t.index "ll_to_earth(latitude, longitude)", name: "index_properties_on_ll_to_earth_latitude_longitude", using: :gist
     t.index ["property_type", "marketing_type"], name: "index_properties_on_property_type_and_marketing_type"
   end
