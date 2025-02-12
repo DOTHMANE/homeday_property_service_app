@@ -14,8 +14,6 @@ class PropertyService
   def similar_properties
     raise ArgumentError, @property.errors.full_messages.join(", ") unless @property.valid?
 
-    Property.where(property_type: @property.property_type, marketing_type: @property.marketing_type)
-            .where("earth_distance(ll_to_earth(?, ?), ll_to_earth(latitude, longitude)) <= ?", @property.latitude, @property.longitude, @radius)
-
+    Property.similar_in_radius(@property, @radius)
   end
 end
