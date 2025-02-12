@@ -12,7 +12,8 @@ class PropertiesController < ApplicationController
     pagy, paginated_properties = pagy(similar_properties)
 
     if paginated_properties.any?
-      render json: { properties: paginated_properties, pagination: pagy_metadata(pagy) }, status: :ok
+      render json: { properties: ActiveModelSerializers::SerializableResource.new(paginated_properties),
+                     pagination: pagy_metadata(pagy) }, status: :ok
     else
       render json: { error: "No properties found" }, status: :not_found
     end
