@@ -140,6 +140,7 @@ GEM
       racc (~> 1.4)
     nokogiri (1.18.2-x86_64-linux-musl)
       racc (~> 1.4)
+    pagy (9.3.3)
     parallel (1.26.3)
     parser (3.3.7.1)
       ast (~> 2.4.1)
@@ -258,6 +259,7 @@ DEPENDENCIES
   bootsnap
   brakeman
   debug
+  pagy (~> 9.3)
   pg (~> 1.1)
   puma (>= 5.0)
   rails (~> 7.2.2, >= 7.2.2.1)
