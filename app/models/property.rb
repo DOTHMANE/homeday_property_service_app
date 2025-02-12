@@ -8,8 +8,10 @@ class Property < ApplicationRecord
 
   scope :similar_in_radius, ->(property, radius) {
     where(property_type: property.property_type, marketing_type: property.marketing_type)
+      .where.not(price: nil)  # Exclude properties with null price
       .where("earth_location && earth_box(ll_to_earth(?, ?), ?)", property.latitude, property.longitude, radius)
       .where("earth_distance(ll_to_earth(?, ?), earth_location) <= ?", property.latitude, property.longitude, radius)
+      .order(price: :asc)
   }
 
   private
