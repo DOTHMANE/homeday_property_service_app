@@ -16,7 +16,6 @@ class PropertyService
 
     Property.where(property_type: @property.property_type, marketing_type: @property.marketing_type)
             .where("earth_distance(ll_to_earth(?, ?), ll_to_earth(latitude, longitude)) <= ?", @property.latitude, @property.longitude, @radius)
-            .pluck(:street, :city, :zip_code, :state, :latitude, :longitude, :price)
 
   end
 end

@@ -9,8 +9,10 @@ class PropertiesController < ApplicationController
 
     similar_properties = property_service.similar_properties
 
-    if similar_properties.any?
-      render json: { properties: similar_properties }, status: :ok
+    pagy, paginated_properties = pagy(similar_properties)
+
+    if paginated_properties.any?
+      render json: { properties: paginated_properties, pagination: pagy_metadata(pagy) }, status: :ok
     else
       render json: { error: "No properties found" }, status: :not_found
     end
