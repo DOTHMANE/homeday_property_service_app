@@ -10,8 +10,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2025_02_12_125125) do
+ActiveRecord::Schema[7.2].define(version: 2025_02_12_131002) do
   # These are extensions that must be enabled in order to support this database
+  enable_extension "cube"
+  enable_extension "earthdistance"
   enable_extension "plpgsql"
 
   create_table "properties", force: :cascade do |t|
