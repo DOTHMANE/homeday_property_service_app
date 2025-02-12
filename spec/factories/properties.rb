@@ -5,7 +5,7 @@ FactoryBot.define do
     longitude { -122.4194 }
     property_type { 'house' }
     marketing_type { 'sale' }
-
+    price { 10 }
     # You can add other fields here if needed
   end
 end
