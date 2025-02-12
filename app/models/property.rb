@@ -11,7 +11,7 @@ class Property < ApplicationRecord
       .where.not(price: nil)  # Exclude properties with null price
       .where("earth_location && earth_box(ll_to_earth(?, ?), ?)", property.latitude, property.longitude, radius)
       .where("earth_distance(ll_to_earth(?, ?), earth_location) <= ?", property.latitude, property.longitude, radius)
-      .order(price: :asc)
+      .order(price: :desc)
   }
 
   private
